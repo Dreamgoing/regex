@@ -1,0 +1,1 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -std=c++11 -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/tes.dir/test.cpp.o CMakeFiles/tes.dir/DFA.cpp.o CMakeFiles/tes.dir/NFA.cpp.o CMakeFiles/tes.dir/State.cpp.o CMakeFiles/tes.dir/Transition.cpp.o  -o tes 
