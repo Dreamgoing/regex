@@ -30,6 +30,10 @@ public:
     State *outb;
     int stateID;
     bool matched;
+    bool visited;
+private:
+    void show();
+    void clean();
 public:
     State();
     ~State();
@@ -37,6 +41,8 @@ public:
     State(int state,NodeState nodeState);
     State(NodeState node);
     void addTransition(Transition* trans);
+    void showDetail();
+
 
 };
 

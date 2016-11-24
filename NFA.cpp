@@ -16,6 +16,7 @@ void NFA::initPrecedenceMap() {
 NFA::NFA() {
     initPrecedenceMap();
     initRoot = nullptr;
+    init();
 
 }
 
@@ -177,12 +178,12 @@ void NFA::patch(std::vector<State*> &out,State* rhs) {
 
 void NFA::literal(char character) {
     Fragment* fragment = new Fragment(State::tolStateNum,Transition::tolTransNum,character);
-    State::tolStateNum+=2;
-    Transition::tolTransNum++;
     fragStack.push(fragment);
 }
 
 void NFA::showNFA() {
+    Fragment* tmp = fragStack.top();
+    tmp->showFragment();
 }
 
 void NFA::alternation() {
@@ -195,7 +196,7 @@ void NFA::alternation() {
     Transition* fromTmpStartTolhs = new Transition(Transition::tolTransNum,'~',lhs->start);
     Transition* fromTmpStartTorhs = new Transition(Transition::tolTransNum,'~',rhs->start);
     tmpStart->addTransition(fromTmpStartTolhs);
-    tmpStart->addTransition(fromTmpStartTolhs);
+    tmpStart->addTransition(fromTmpStartTorhs);
 
     Transition* fromlhsToTmpFinal = new Transition(Transition::tolTransNum,'~',tmpFinal);
     Transition* fromrhsToTmpFinal = new Transition(Transition::tolTransNum,'~',tmpFinal);
@@ -204,9 +205,19 @@ void NFA::alternation() {
 
     Fragment* res = new Fragment(tmpStart,tmpFinal);
     fragStack.push(res);
+}
 
+void NFA::init() {
+    State::tolStateNum = 0;
+    Transition::tolTransNum = 0;
+    clean();
+}
 
-
-
+void NFA::clean() {
+    while (!fragStack.empty()){
+        Fragment* tmp = fragStack.top();
+        fragStack.pop();
+        delete tmp;
+    }
 }
 

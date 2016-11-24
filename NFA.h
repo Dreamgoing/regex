@@ -10,6 +10,7 @@
 #include <stack>
 #include <set>
 #include <map>
+#include <queue>
 #include "State.h"
 #include "Transition.h"
 
@@ -37,9 +38,29 @@ public:
         this->start = start;
         this->final = final;
     }
+    void showFragment(){
+        queue<State*> stateQueue;
+        while (!stateQueue.empty()){
+            stateQueue.pop();
+        }
+        State* now;
+        stateQueue.push(start);
+        while (!stateQueue.empty()){
+            now = stateQueue.front();
+            stateQueue.pop();
+            if(!now->visited){
+                now->visited = true;
+                now->showDetail();
+                for(int i = 0;i<now->nextStates.size();i++){
+                    State* next = now->nextStates[i]->nextState;
+                    stateQueue.push(next);
+                }
+            }
+        }
+    }
 };
 class NFA {
-private:
+public:
     map<char,int> precedenceMap;
     stack<Fragment*> fragStack;
     State* initRoot;
@@ -52,9 +73,11 @@ private:
     void alternation();
     void literal(char character);
     void patch(std::vector<State*> &out,State* rhs);
+    void clean();
 
 public:
     NFA();
+    void init();
     ///@todo thinking how to implement the whole project.
     string regExToPostfix(const string &regEx);
     bool ThompsonNFA(const string &postfix);

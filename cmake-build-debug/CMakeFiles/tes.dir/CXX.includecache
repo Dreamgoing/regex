@@ -27,6 +27,8 @@ set
 -
 map
 -
+queue
+-
 State.h
 /Users/wangruoxuan/ClionProjects/regex/State.h
 Transition.h
@@ -35,6 +37,8 @@ Transition.h
 /Users/wangruoxuan/ClionProjects/regex/State.cpp
 State.h
 /Users/wangruoxuan/ClionProjects/regex/State.h
+Transition.h
+/Users/wangruoxuan/ClionProjects/regex/Transition.h
 
 /Users/wangruoxuan/ClionProjects/regex/State.h
 iostream
@@ -69,4 +73,6 @@ NFA.h
 /Users/wangruoxuan/ClionProjects/regex/NFA.h
 Transition.h
 /Users/wangruoxuan/ClionProjects/regex/Transition.h
+cassert
+-
 

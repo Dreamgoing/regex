@@ -11,6 +11,7 @@ CMakeFiles/tes.dir/NFA.cpp.o: ../Transition.h
 
 CMakeFiles/tes.dir/State.cpp.o: ../State.cpp
 CMakeFiles/tes.dir/State.cpp.o: ../State.h
+CMakeFiles/tes.dir/State.cpp.o: ../Transition.h
 
 CMakeFiles/tes.dir/Transition.cpp.o: ../State.h
 CMakeFiles/tes.dir/Transition.cpp.o: ../Transition.cpp
