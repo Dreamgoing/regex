@@ -38,7 +38,7 @@ void testRegExToNFA(){
     }
 }
 int main() {
-    //testRegExToPostfix();
+//    testRegExToPostfix();
     testRegExToNFA();
 }
 

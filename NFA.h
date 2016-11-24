@@ -11,6 +11,7 @@
 #include <set>
 #include <map>
 #include <queue>
+#include <cassert>
 #include "State.h"
 #include "Transition.h"
 
@@ -60,10 +61,12 @@ public:
     }
 };
 class NFA {
-public:
+private:
     map<char,int> precedenceMap;
     stack<Fragment*> fragStack;
     State* initRoot;
+    State* end;
+    Fragment* nfa;
 
 private:
     void initPrecedenceMap();
@@ -72,11 +75,15 @@ private:
     void catenation();
     void alternation();
     void literal(char character);
+    void closure();
+    void closurePlus();
+    void zeroOrOne();
     void patch(std::vector<State*> &out,State* rhs);
     void clean();
 
 public:
     NFA();
+    ~NFA();
     void init();
     ///@todo thinking how to implement the whole project.
     string regExToPostfix(const string &regEx);

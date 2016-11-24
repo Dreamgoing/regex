@@ -114,18 +114,22 @@ string NFA::regExToPostfix(const string &regex) {
                 st.pop();
                 break;
             default:
-                while (!st.empty()){
-                    char peeked = st.top();
-                    int peekedPrecedence = getPrecedence(peeked);
-                    int nowPrecedence = getPrecedence(now);
-                    if(peekedPrecedence>=nowPrecedence){
-                        postfix+=peeked;
-                        st.pop();
-                    } else{
-                        break;
+                if(precedenceMap.find(now)!=precedenceMap.end()){
+                    while (!st.empty()&&st.top()!='('){
+                        char peeked = st.top();
+                        int peekedPrecedence = getPrecedence(peeked);
+                        int nowPrecedence = getPrecedence(now);
+                        if(peekedPrecedence>=nowPrecedence){
+                            postfix+=peeked;
+                            st.pop();
+                        } else{
+                            break;
+                        }
                     }
+                    st.push(now);
+                } else{
+                    postfix+=now;
                 }
-                st.push(now);
                 break;
         }
 
@@ -148,15 +152,37 @@ bool NFA::ThompsonNFA(const string &postfix) {
             case '|':
                 alternation();
                 break;
+            case '*':
+                closure();
+                break;
+            case '+':
+                closurePlus();
+                break;
+            case '?':
+                zeroOrOne();
+                break;
             default:
                 literal(now);
                 break;
         }
 
     }
-    return true;
+    ///save the nfa initState
+    if(fragStack.size()==1){
+        nfa = fragStack.top();
+        initRoot = nfa->start;
+        end = nfa->final;
+        end->matched = true;
+        fragStack.pop();
+        //assert(0);
+        return true;
+    } else{
+        return false;
+    }
+
 }
 
+///explicit catenation operation '.'
 void NFA::catenation() {
     Fragment* lhs = fragStack.top();
     fragStack.pop();
@@ -182,10 +208,10 @@ void NFA::literal(char character) {
 }
 
 void NFA::showNFA() {
-    Fragment* tmp = fragStack.top();
-    tmp->showFragment();
+    nfa->showFragment();
 }
 
+///@brief solve '|'
 void NFA::alternation() {
     Fragment* lhs = fragStack.top();
     fragStack.pop();
@@ -207,6 +233,75 @@ void NFA::alternation() {
     fragStack.push(res);
 }
 
+///@brief solve '*'
+void NFA::closure() {
+    Fragment* fragment = fragStack.top();
+    fragStack.pop();
+    State* tmpStart = new State(State::tolStateNum);
+    State* tmpFinal = new State(State::tolStateNum);
+
+    Transition* fromTmpStartToFrag = new Transition(Transition::tolTransNum,'~',fragment->start);
+    Transition* fromFragToTmpStart = new Transition(Transition::tolTransNum,'~',tmpStart);
+
+    ///circle
+    tmpStart->addTransition(fromTmpStartToFrag);
+    fragment->final->addTransition(fromFragToTmpStart);
+
+    ///out
+    Transition* fromTmpStartToTmpFinal = new Transition(Transition::tolTransNum,'~',tmpFinal);
+    tmpStart->addTransition(fromTmpStartToTmpFinal);
+
+    ///res
+    Fragment* res = new Fragment(tmpStart,tmpFinal);
+    fragStack.push(res);
+
+
+
+
+
+}
+
+///@brief solve '+'
+void NFA::closurePlus() {
+    Fragment* fragment = fragStack.top();
+    fragStack.pop();
+    State* tmpStart = new State(State::tolStateNum);
+    State* tmpFinal = new State(State::tolStateNum);
+
+    Transition* fromFragToTmpFinal = new Transition(Transition::tolTransNum,'~',tmpFinal);
+    Transition* fromTmpFinalToFrag = new Transition(Transition::tolTransNum,'~',fragment->start);
+
+    fragment->final->addTransition(fromFragToTmpFinal);
+    tmpFinal->addTransition(fromTmpFinalToFrag);
+
+    Transition* fromTmpFinalToTmpStart = new Transition(Transition::tolTransNum,'~',tmpStart);
+    tmpFinal->addTransition(fromTmpFinalToTmpStart);
+
+    Fragment* res = new Fragment(fragment->start,tmpStart);
+    fragStack.push(res);
+
+
+}
+void NFA::zeroOrOne() {
+    Fragment* fragment = fragStack.top();
+    fragStack.pop();
+
+    State* tmpStart = new State(State::tolStateNum);
+    State* tmpFinal = new State(State::tolStateNum);
+
+    Transition* fromTmpStartToFrag = new Transition(Transition::tolTransNum,'~',fragment->start);
+    Transition* fromTmpStartToTmpFinal = new Transition(Transition::tolTransNum,'~',tmpFinal);
+    Transition* fromFragToTmpFinal = new Transition(Transition::tolTransNum,'~',tmpFinal);
+    tmpStart->addTransition(fromTmpStartToFrag);
+    tmpStart->addTransition(fromTmpStartToTmpFinal);
+    fragment->final->addTransition(fromFragToTmpFinal);
+
+    Fragment* res = new Fragment(tmpStart,tmpFinal);
+    fragStack.push(res);
+
+
+
+}
 void NFA::init() {
     State::tolStateNum = 0;
     Transition::tolTransNum = 0;
@@ -219,5 +314,18 @@ void NFA::clean() {
         fragStack.pop();
         delete tmp;
     }
+    ///@todo free pointer error
+    /*if(nfa!= nullptr){
+        delete nfa;
+    }*/
 }
+
+NFA::~NFA() {
+}
+
+
+
+
+
+
 
