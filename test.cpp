@@ -5,13 +5,23 @@
 #include <map>
 #include "NFA.h"
 #include "Transition.h"
+#include "DFA.h"
 #include <cassert>
 using namespace std;
 
 //#define DEBUG_SHOW_FRAGMENT
 
+
+/**
+ * @note use regex library's init function before regex match
+ * @todo use Boost test framework*/
+
 int Transition::tolTransNum = 0;
 int State::tolStateNum = 0;
+int DFAstate::tolDFAstateNum = 0;
+int DFAtransition::tolDFAtransitionNum = 0;
+
+
 void testRegExToPostfix(){
     NFA nfa;
     string regEx;
@@ -35,6 +45,16 @@ void testRegExToNFA(){
         nfa.ThompsonNFA(postfix);
         nfa.showNFA();
         cout<<'\n';
+    }
+}
+
+void testNFAtoDFA(){
+    DFA dfa;
+    string regEx;
+    while (cin>>regEx){
+        cout<<"regex: "<<regEx<<endl;
+        dfa.init(regEx);
+
     }
 }
 int main() {

@@ -231,6 +231,33 @@ Transition.cpp.s:
 	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/Transition.cpp.s
 .PHONY : Transition.cpp.s
 
+regex.o: regex.cpp.o
+
+.PHONY : regex.o
+
+# target to build an object file
+regex.cpp.o:
+	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/regex.cpp.o
+.PHONY : regex.cpp.o
+
+regex.i: regex.cpp.i
+
+.PHONY : regex.i
+
+# target to preprocess a source file
+regex.cpp.i:
+	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/regex.cpp.i
+.PHONY : regex.cpp.i
+
+regex.s: regex.cpp.s
+
+.PHONY : regex.s
+
+# target to generate assembly for a file
+regex.cpp.s:
+	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/regex.cpp.s
+.PHONY : regex.cpp.s
+
 test.o: test.cpp.o
 
 .PHONY : test.o
@@ -279,6 +306,9 @@ help:
 	@echo "... Transition.o"
 	@echo "... Transition.i"
 	@echo "... Transition.s"
+	@echo "... regex.o"
+	@echo "... regex.i"
+	@echo "... regex.s"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"

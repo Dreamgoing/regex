@@ -106,6 +106,12 @@
 		<Unit filename="/Users/wangruoxuan/ClionProjects/regex/Transition.h">
 			<Option target="tes"/>
 		</Unit>
+		<Unit filename="/Users/wangruoxuan/ClionProjects/regex/regex.cpp">
+			<Option target="tes"/>
+		</Unit>
+		<Unit filename="/Users/wangruoxuan/ClionProjects/regex/regex.h">
+			<Option target="tes"/>
+		</Unit>
 		<Unit filename="/Users/wangruoxuan/ClionProjects/regex/test.cpp">
 			<Option target="tes"/>
 		</Unit>

@@ -13,19 +13,20 @@
 
 ///@todo call constructor inc static member tolStateNum.
 class Transition;
+
 using namespace std;
 
 class State {
 public:
-    enum NodeState{
+    enum NodeState {
         SINGLE,
         SPLIT,
         MATCH
-    }nodeState;
+    } nodeState;
     static int tolStateNum;
 public:
-    multimap<char,State*> transition;
-    vector<Transition*> nextStates;
+    multimap<char, State *> transition;
+    vector<Transition *> nextStates;
     State *outa;
     State *outb;
     int stateID;
@@ -33,14 +34,22 @@ public:
     bool visited;
 private:
     void show();
+
     void clean();
+
 public:
     State();
+
     ~State();
+
     State(int stateID);
-    State(int state,NodeState nodeState);
+
+    State(int state, NodeState nodeState);
+
     State(NodeState node);
-    void addTransition(Transition* trans);
+
+    void addTransition(Transition *trans);
+
     void showDetail();
 
 

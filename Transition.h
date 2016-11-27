@@ -13,19 +13,25 @@ class Transition {
 public:
     static int tolTransNum;
 public:
-    State* nextState;
+    State *nextState;
     int transID;
     char inAccept;
 
 private:
-    void recursionShow(State* state);
+    void recursionShow(State *state);
+
 public:
     Transition();
-    Transition(const State& lhs,const std::vector<State*> &rhs);
-    Transition(const State& lhs,State* rhs);
-    Transition(State* lhs,const vector<State*> &rhs);
-    Transition(State* lhs,State* rhs);
-    Transition(int ID,char inaccept,State *next);
+
+    Transition(const State &lhs, const std::vector<State *> &rhs);
+
+    Transition(const State &lhs, State *rhs);
+
+    Transition(State *lhs, const vector<State *> &rhs);
+
+    Transition(State *lhs, State *rhs);
+
+    Transition(int ID, char inaccept, State *next);
 
 
     void showDetail();

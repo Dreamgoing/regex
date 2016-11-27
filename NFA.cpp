@@ -16,7 +16,10 @@ void NFA::initPrecedenceMap() {
 NFA::NFA() {
     initPrecedenceMap();
     initRoot = nullptr;
+    end = nullptr;
+    nfa = nullptr;
     init();
+    charSet.clear();
 
 }
 
@@ -32,6 +35,8 @@ int NFA::getPrecedence(char c) {
 /**
  * @brief Transform regular expression by inserting a '.'
  * as explicit concatenation operator.
+ * @note not solve escape character
+ * @todo to support more strong regex match
  * */
 string NFA::formatRegEx(const string &regEx) {
     set<char> allOperators;
@@ -99,6 +104,7 @@ string NFA::regExToPostfix(const string &regex) {
     while (!st.empty()){
         st.pop();
     }
+    charSet.insert('~');
     postfix.clear();
     for(int i = 0;i<rule.length();i++){
         char now = rule[i];
@@ -128,6 +134,7 @@ string NFA::regExToPostfix(const string &regex) {
                     }
                     st.push(now);
                 } else{
+                    charSet.insert(now);
                     postfix+=now;
                 }
                 break;
@@ -138,6 +145,7 @@ string NFA::regExToPostfix(const string &regex) {
         postfix+=st.top();
         st.pop();
     }
+    this->postfix = postfix;
     return postfix;
 }
 
@@ -321,6 +329,59 @@ void NFA::clean() {
 }
 
 NFA::~NFA() {
+}
+
+const map<char, int> &NFA::getPrecedenceMap() const {
+    return precedenceMap;
+}
+
+void NFA::setPrecedenceMap(const map<char, int> &precedenceMap) {
+    NFA::precedenceMap = precedenceMap;
+}
+
+const stack<Fragment *, deque<Fragment *, allocator<Fragment *>>> &NFA::getFragStack() const {
+    return fragStack;
+}
+
+void NFA::setFragStack(const stack<Fragment *, deque<Fragment *, allocator<Fragment *>>> &fragStack) {
+    NFA::fragStack = fragStack;
+}
+
+State *NFA::getInitRoot() const {
+    return initRoot;
+}
+
+void NFA::setInitRoot(State *initRoot) {
+    NFA::initRoot = initRoot;
+}
+
+State *NFA::getEnd() const {
+    return end;
+}
+
+void NFA::setEnd(State *end) {
+    NFA::end = end;
+}
+
+Fragment *NFA::getNfa() const {
+    return nfa;
+}
+
+void NFA::setNfa(Fragment *nfa) {
+    NFA::nfa = nfa;
+}
+
+const set<char> &NFA::getCharSet() const {
+    return charSet;
+}
+
+void NFA::setCharSet(const set<char> &charSet) {
+    NFA::charSet = charSet;
+}
+
+void NFA::regexToNFA(const string &regex) {
+    this->regExToPostfix(regex);
+    this->ThompsonNFA(postfix);
 }
 
 

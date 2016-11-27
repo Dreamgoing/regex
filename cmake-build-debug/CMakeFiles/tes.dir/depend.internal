@@ -4,6 +4,9 @@
 CMakeFiles/tes.dir/DFA.cpp.o
  /Users/wangruoxuan/ClionProjects/regex/DFA.cpp
  /Users/wangruoxuan/ClionProjects/regex/DFA.h
+ /Users/wangruoxuan/ClionProjects/regex/NFA.h
+ /Users/wangruoxuan/ClionProjects/regex/State.h
+ /Users/wangruoxuan/ClionProjects/regex/Transition.h
 CMakeFiles/tes.dir/NFA.cpp.o
  /Users/wangruoxuan/ClionProjects/regex/NFA.cpp
  /Users/wangruoxuan/ClionProjects/regex/NFA.h
@@ -17,7 +20,11 @@ CMakeFiles/tes.dir/Transition.cpp.o
  /Users/wangruoxuan/ClionProjects/regex/State.h
  /Users/wangruoxuan/ClionProjects/regex/Transition.cpp
  /Users/wangruoxuan/ClionProjects/regex/Transition.h
+CMakeFiles/tes.dir/regex.cpp.o
+ /Users/wangruoxuan/ClionProjects/regex/regex.cpp
+ /Users/wangruoxuan/ClionProjects/regex/regex.h
 CMakeFiles/tes.dir/test.cpp.o
+ /Users/wangruoxuan/ClionProjects/regex/DFA.h
  /Users/wangruoxuan/ClionProjects/regex/NFA.h
  /Users/wangruoxuan/ClionProjects/regex/State.h
  /Users/wangruoxuan/ClionProjects/regex/Transition.h

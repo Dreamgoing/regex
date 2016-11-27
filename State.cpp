@@ -16,14 +16,14 @@ State::State() {
 State::~State() {
 }
 
-State::State(int stateID):stateID(stateID) {
+State::State(int stateID) : stateID(stateID) {
     transition.clear();
     tolStateNum++;
     matched = false;
     visited = false;
 }
 
-State::State(int stateID, State::NodeState nodeState) :stateID(stateID),nodeState(nodeState){
+State::State(int stateID, State::NodeState nodeState) : stateID(stateID), nodeState(nodeState) {
     matched = false;
     visited = false;
     tolStateNum++;
@@ -31,7 +31,7 @@ State::State(int stateID, State::NodeState nodeState) :stateID(stateID),nodeStat
 
 }
 
-State::State(State::NodeState node) : nodeState(node){
+State::State(State::NodeState node) : nodeState(node) {
     tolStateNum++;
     matched = false;
     visited = false;
@@ -39,15 +39,15 @@ State::State(State::NodeState node) : nodeState(node){
 
 }
 
-void State::addTransition(Transition* trans) {
+void State::addTransition(Transition *trans) {
     nextStates.push_back(trans);
 }
 
 void State::show() {
 
-    for(int i = 0;i<nextStates.size();i++){
-        Transition* it = nextStates[i];
-        cout<<"state "<<this->stateID<<" => "<<it->inAccept<<" => "<<it->nextState->stateID<<endl;
+    for (int i = 0; i < nextStates.size(); i++) {
+        Transition *it = nextStates[i];
+        cout << "state " << this->stateID << " => " << it->inAccept << " => " << it->nextState->stateID << endl;
     }
 
 }
