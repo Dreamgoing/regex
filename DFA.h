@@ -17,8 +17,21 @@
 #include "Transition.h"
 
 using namespace std;
+class DFAstate;
+class DFAtransition {
+public:
+    static int tolDFAtransitionNum;
 
-class DFAtransition;
+public:
+    int DFAtransitionID;
+    char inaccept;
+    DFAstate* nextDFAstate;
+
+public:
+    DFAtransition(int DFAtransitionID,char inaccept,DFAstate* next):
+            DFAtransitionID(DFAtransitionID),inaccept(inaccept),nextDFAstate(next){}
+
+};
 class DFAstate {
 public:
     static int tolDFAstateNum;
@@ -26,6 +39,7 @@ public:
     set<char> charSet;
     vector<DFAtransition*> nextDFAstates;
     bool matched;
+    bool start;
 private:
     set<State *> stateSet;
 public:
@@ -58,11 +72,34 @@ public:
         tolDFAstateNum++;
 
     }
+    ~DFAstate(){
+        tolDFAstateNum--;
+        tolDFAstateNum = max(0,tolDFAstateNum);
+    }
     void addState(State* state){
         stateSet.insert(state);
     }
     void addDFAtransition(DFAtransition* transition){
         nextDFAstates.push_back(transition);
+    }
+    void showDetail(){
+        cout<<"DFAstate ID "<<this->DFAstateID;
+        if(start){
+            cout<<" <initState> ";
+        }
+        if(matched){
+            cout<<" <endState> ";
+        }
+        cout<<'\n'<<"nfa states: [ ";
+        for(auto it:stateSet){
+            cout<<it->stateID<<" ";
+        }
+        cout<<"] "<<endl;
+        for(auto it:nextDFAstates){
+            cout<<"dfaState "<<DFAstateID<<" => "<<it->inaccept<<" => "<<it->nextDFAstate->DFAstateID<<endl;
+            cout<<'\n';
+        }
+        cout<<'\n';
     }
     bool empty(){
         return stateSet.empty();
@@ -81,26 +118,42 @@ public:
 
 };
 
-class DFAtransition {
-public:
-    static int tolDFAtransitionNum;
 
-public:
-    int DFAtransitionID;
-    char inaccept;
-    DFAstate* nextDFAstate;
-
-public:
-    DFAtransition(int DFAtransitionID,char inaccept,DFAstate* next):
-            DFAtransitionID(DFAtransitionID),inaccept(inaccept),nextDFAstate(next){}
-
-};
 
 class DFA {
 private:
     NFA nfa;
+public:
+    const NFA &getNfa() const;
+
+    void setNfa(const NFA &nfa);
+
+    const multimap<pair<char, State *>, State *> &getNFAmove() const;
+
+    void setNFAmove(const multimap<pair<char, State *>, State *> &NFAmove);
+
+    const set<DFAstate *> &getDFAstateSet() const;
+
+    void setDFAstateSet(const set<DFAstate *> &DFAstateSet);
+
+    const string &getRegex() const;
+
+    void setRegex(const string &regex);
+
+    DFAstate *getInitRoot() const;
+
+    void setInitRoot(DFAstate *initRoot);
+
+    DFAstate *getFinal() const;
+
+    void setFinal(DFAstate *final) {
+        this->final = final;
+    }
+
+
+private:
     multimap<pair<char,State*>,State*> NFAmove;
-    DFAgraph dfa;
+//    DFAgraph dfa;
     set<DFAstate*> DFAstateSet;
     string regex;
     DFAstate* initRoot;
@@ -113,6 +166,8 @@ private:
     void NFAinit();
     DFAstate *eClosure(State *state);
     DFAstate *eClosure(set<State*> states);
+    bool lesser(State* lhs,State* rhs);
+
 
 public:
     explicit DFA(){}

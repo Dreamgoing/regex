@@ -50,15 +50,22 @@ void testRegExToNFA(){
 
 void testNFAtoDFA(){
     DFA dfa;
+    NFA nfa;
     string regEx;
     while (cin>>regEx){
-        cout<<"regex: "<<regEx<<endl;
+        cout<<"regex: "<<regEx<<'\n'<<endl;
         dfa.init(regEx);
-
+        dfa.subsetConstruction();
+        dfa.showDFA();
+        ///show nfa
+//        nfa = dfa.getNfa();
+//        nfa.showNFA();
     }
 }
 int main() {
 //    testRegExToPostfix();
-    testRegExToNFA();
+//    testRegExToNFA();
+    testNFAtoDFA();
+
 }
 

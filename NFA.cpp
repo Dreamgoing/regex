@@ -4,7 +4,7 @@
 
 #include "NFA.h"
 
-
+///@todo to support "\\"
 
 void NFA::initPrecedenceMap() {
     precedenceMap.clear();
@@ -382,6 +382,10 @@ void NFA::setCharSet(const set<char> &charSet) {
 void NFA::regexToNFA(const string &regex) {
     this->regExToPostfix(regex);
     this->ThompsonNFA(postfix);
+}
+
+bool NFA::ThompsonNFA() {
+    return ThompsonNFA(postfix);
 }
 
 

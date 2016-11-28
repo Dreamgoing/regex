@@ -137,6 +137,8 @@ public:
 
     bool ThompsonNFA(const string &postfix);
 
+    bool ThompsonNFA();
+
     void showNFA();
 
     void regexToNFA(const string& regex);

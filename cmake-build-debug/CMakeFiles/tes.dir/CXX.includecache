@@ -25,6 +25,8 @@ map
 -
 queue
 -
+algorithm
+-
 NFA.h
 /Users/wangruoxuan/ClionProjects/regex/NFA.h
 Transition.h
