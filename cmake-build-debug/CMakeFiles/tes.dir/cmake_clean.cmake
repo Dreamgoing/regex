@@ -4,7 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/tes.dir/NFA.cpp.o"
   "CMakeFiles/tes.dir/State.cpp.o"
   "CMakeFiles/tes.dir/Transition.cpp.o"
-  "CMakeFiles/tes.dir/regex.cpp.o"
+  "CMakeFiles/tes.dir/Regex.cpp.o"
   "tes.pdb"
   "tes"
 )

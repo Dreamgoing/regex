@@ -94,6 +94,12 @@
 		<Unit filename="/Users/wangruoxuan/ClionProjects/regex/NFA.h">
 			<Option target="tes"/>
 		</Unit>
+		<Unit filename="/Users/wangruoxuan/ClionProjects/regex/Regex.cpp">
+			<Option target="tes"/>
+		</Unit>
+		<Unit filename="/Users/wangruoxuan/ClionProjects/regex/Regex.h">
+			<Option target="tes"/>
+		</Unit>
 		<Unit filename="/Users/wangruoxuan/ClionProjects/regex/State.cpp">
 			<Option target="tes"/>
 		</Unit>
@@ -104,12 +110,6 @@
 			<Option target="tes"/>
 		</Unit>
 		<Unit filename="/Users/wangruoxuan/ClionProjects/regex/Transition.h">
-			<Option target="tes"/>
-		</Unit>
-		<Unit filename="/Users/wangruoxuan/ClionProjects/regex/regex.cpp">
-			<Option target="tes"/>
-		</Unit>
-		<Unit filename="/Users/wangruoxuan/ClionProjects/regex/regex.h">
 			<Option target="tes"/>
 		</Unit>
 		<Unit filename="/Users/wangruoxuan/ClionProjects/regex/test.cpp">

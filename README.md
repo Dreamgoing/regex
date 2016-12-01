@@ -9,6 +9,11 @@
  + __Subset Construction Algorithm__
  + __MinimizeDFA Algorthim__
  
-
  
+##reference
+[regex => NFA](https://swtch.com/~rsc/regexp/regexp1.html)
+
+[NFA => DFA](http://web.cecs.pdx.edu/~harry/compilers/slides/LexicalPart3.pdf)
+
+[minizeDFA](http://web.cecs.pdx.edu/~harry/compilers/slides/LexicalPart4.pdf)
  

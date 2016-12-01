@@ -34,7 +34,7 @@ void testRegExToNFA(){
     NFA nfa;
     string regEx;
     while (cin>>regEx){
-        cout<<"regex: "<<regEx<<endl;
+        cout<<"Regex: "<<regEx<<endl;
 
         nfa.init();
 #ifdef DEBUG_SHOW_FRAGMENT
@@ -49,17 +49,19 @@ void testRegExToNFA(){
 }
 
 void testNFAtoDFA(){
+    ///@bug (a|s)d* a*b (a|b)c test pass
     DFA dfa;
     NFA nfa;
     string regEx;
     while (cin>>regEx){
-        cout<<"regex: "<<regEx<<'\n'<<endl;
+        cout<<"Regex: "<<regEx<<'\n'<<endl;
+        dfa.cleanUp();
         dfa.init(regEx);
         dfa.subsetConstruction();
         dfa.showDFA();
         ///show nfa
-//        nfa = dfa.getNfa();
-//        nfa.showNFA();
+        nfa = dfa.getNfa();
+        nfa.showNFA();
     }
 }
 int main() {

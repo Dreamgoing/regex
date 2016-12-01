@@ -5,6 +5,8 @@
 #ifndef REGEX_DFA_H
 #define REGEX_DFA_H
 
+//#define DEBUG_SHOW_ECLOSURE_CHANGE
+
 #include <set>
 #include <iostream>
 #include <cassert>
@@ -63,6 +65,7 @@ public:
         tolDFAstateNum++;
         nextDFAstates.clear();
 
+
     }
     ///@todo to think the relationship between default constructor and user defined constructor
     DFAstate(int DFAstateID) : DFAstateID(DFAstateID) {
@@ -75,6 +78,9 @@ public:
     ~DFAstate(){
         tolDFAstateNum--;
         tolDFAstateNum = max(0,tolDFAstateNum);
+    }
+    bool exist(State* state){
+        return stateSet.find(state)!=stateSet.end();
     }
     void addState(State* state){
         stateSet.insert(state);
@@ -103,6 +109,33 @@ public:
     }
     bool empty(){
         return stateSet.empty();
+    }
+
+    bool operator < (const DFAstate& lhs)const{
+        return DFAstateID<lhs.DFAstateID;
+    }
+    bool operator < (DFAstate* lhs)const{
+        return this->DFAstateID<lhs->DFAstateID;
+    }
+    bool operator == (const DFAstate& lhs)const{
+        if(this->getStateSet().size()!=lhs.getStateSet().size()){
+            return false;
+        }
+        vector<int> tmplhs;
+        tmplhs.clear();
+        for(auto it:lhs.getStateSet()){
+            tmplhs.push_back(it->stateID);
+        }
+        vector<int> tmpthis;
+        tmpthis.clear();
+        for(auto it:this->getStateSet()){
+            tmpthis.push_back(it->stateID);
+        }
+        sort(tmplhs.begin(),tmplhs.end());
+        sort(tmpthis.begin(),tmpthis.end());
+        return tmplhs==tmpthis;
+        ///@todo use vector operator ==
+
     }
 };
 
@@ -155,18 +188,23 @@ private:
     multimap<pair<char,State*>,State*> NFAmove;
 //    DFAgraph dfa;
     set<DFAstate*> DFAstateSet;
+    vector<vector<int> >DFAIDset;
     string regex;
     DFAstate* initRoot;
     DFAstate* final;
 private:
+
     void initNFAmove();
     void findFinal();
+
     set<State*> nfaMove(set<State*> states,char inputChar);
     set<State*> nfaMove(State* state,char inputChar);
     void NFAinit();
     DFAstate *eClosure(State *state);
     DFAstate *eClosure(set<State*> states);
     bool lesser(State* lhs,State* rhs);
+    bool existDFAstate(DFAstate* rhs);
+    DFAstate* solveEclosure(DFAstate* dfAstate);
 
 
 public:
@@ -176,7 +214,9 @@ public:
     }
     void init(const string& regex);
     void subsetConstruction();
+    void minizeDFA();
     void showDFA();
+    void cleanUp();
 
 
 };

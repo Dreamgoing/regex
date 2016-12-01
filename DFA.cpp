@@ -4,7 +4,7 @@
 
 #include "DFA.h"
 
-///@note initNFAmove need to be changed.
+//@note initNFAmove need to be changed.
 void DFA::initNFAmove() {
     NFAmove.clear();
     const int max_n = 110000;
@@ -27,6 +27,7 @@ void DFA::NFAinit() {
     ///@todo initNFA before DFA
 }
 
+///@note set<pointer> use find don't work well.
 void DFA::subsetConstruction() {
     ///@not not dfa.init()
     //dfa.init();
@@ -47,22 +48,33 @@ void DFA::subsetConstruction() {
     while (!DFAstateQueue.empty()){
         now = DFAstateQueue.front();
         DFAstateQueue.pop();
+
         if(!vis[now->DFAstateID]){
             vis[now->DFAstateID] = true;
             for(auto c:nfa.getCharSet()){
                 if(c=='~')
                     continue;
-                //cout<<c<<" ";
                 nextState = eClosure(nfaMove(now->getStateSet(),c));
-                ///nextState->showDetail();
-                if(!nextState->empty()&&DFAstateSet.find(nextState)==DFAstateSet.end()){
+                nextState = solveEclosure(nextState);
+#ifdef DEBUG_SHOW_ECLOSURE_CHANGE
+                //cout<<c<<" ";
+                cerr<<"debug ";
+                now->showDetail();
+                nextState->showDetail();
+                cout<<DFAstateSet.size();
+#endif
+                if(!nextState->empty()&&!existDFAstate(nextState)){
                     DFAstateSet.insert(nextState);
+                    //cout<<"ok"<<endl;
+//                    assert(existDFAstate(nextState));
+//                    assert(DFAstateSet.find(nextState)!=DFAstateSet.end());
                     DFAstateQueue.push(nextState);
                 }
 
                 ///@note add an edge from now to nextState (DFAstate).
                 ///@bug nextState is empty.
                 if(!nextState->empty()){
+
                     now->addDFAtransition(new DFAtransition(DFAtransition::tolDFAtransitionNum,c,nextState));
                 } else{
                     delete nextState;
@@ -79,29 +91,46 @@ void DFA::subsetConstruction() {
 
 DFAstate *DFA::eClosure(State *state) {
     DFAstate *res = new DFAstate(DFAstate::tolDFAstateNum);
-    for(auto it:state->nextStates){
-        //it->showDetail();
-        if(it->inAccept=='~'){
-            res->addState(it->nextState);
-        }
-    }
-    res->addState(state);
-    return res;
-}
-
-DFAstate *DFA::eClosure(set<State *> states) {
-    DFAstate *res = new DFAstate(DFAstate::tolDFAstateNum);
-    for(auto itState:states){
-        res->addState(itState);
-        for(auto itNext:itState->nextStates){
-            if(itNext->inAccept=='~'){
-                res->addState(itNext->nextState);
+    queue<State*> stateQueue;
+    stateQueue.push(state);
+    State* now;
+    while (!stateQueue.empty()){
+        now = stateQueue.front();
+        stateQueue.pop();
+        if(!res->exist(now)){
+            res->addState(now);
+            for(auto it:now->nextStates){
+                if(it->inAccept=='~'){
+                    stateQueue.push(it->nextState);
+                }
             }
         }
     }
-
     return res;
+}
 
+///use dfs to find all eClosure.
+DFAstate *DFA::eClosure(set<State *> states) {
+    DFAstate *res = new DFAstate(DFAstate::tolDFAstateNum);
+    queue<State*> stateQueue;
+    for(auto it:states){
+        stateQueue.push(it);
+    }
+    State* now;
+    while (!stateQueue.empty()){
+        now = stateQueue.front();
+        stateQueue.pop();
+        if(!res->exist(now)){
+            //cout<<"ok"<<endl;
+            res->addState(now);
+            for(auto it:now->nextStates){
+                if(it->inAccept=='~'){
+                    stateQueue.push(it->nextState);
+                }
+            }
+        }
+    }
+    return res;
 }
 
 set<State *> DFA::nfaMove(set<State *> states, char inputChar) {
@@ -119,6 +148,7 @@ set<State *> DFA::nfaMove(set<State *> states, char inputChar) {
     return res;
 }
 
+
 set<State *> DFA::nfaMove(State *state, char inputChar) {
     set<State*> res;
     res.clear();
@@ -135,6 +165,7 @@ void DFA::init(const string& regex) {
     nfa.init();
     nfa.regExToPostfix(regex);
     nfa.ThompsonNFA();
+    DFAIDset.clear();
     //this->subsetConstruction();
 }
 
@@ -171,6 +202,8 @@ void DFA::findFinal() {
         }
     }
 }
+
+///@parblock setter and gettter
 
 const NFA &DFA::getNfa() const {
     return nfa;
@@ -216,8 +249,69 @@ DFAstate *DFA::getFinal() const {
     return final;
 }
 
+///@endparblock
+
 bool DFA::lesser(State *lhs, State *rhs) {
     return lhs->stateID<rhs->stateID;
+}
+
+
+/**@brief use Hopcroft's Algorithm
+ * Merge states if at all possible.
+ * @parm none
+ * @note Partitioning a set : breaks the set into non-overlapping subsets.
+ */
+
+/**@brief
+ * 1. Partition it
+ *      + Final State
+ *      + All Other State
+ * 2. Repeatedly "refine" the partioning.
+ *      + Two states will be placed in different groups,if they can be "distinguished".
+ * 3. Repeat until no group contains states that can be distinguished.
+ * 4. Each group in the partitioning becomes one state in a newly constucted DFA.
+ *
+ *
+ */
+void DFA::minizeDFA() {
+    ///@todo implement this function
+
+
+}
+
+bool DFA::existDFAstate(DFAstate *rhs) {
+    vector<int> rhsIDstates;
+    rhsIDstates.clear();
+    for(auto it:rhs->getStateSet()){
+        rhsIDstates.push_back(it->stateID);
+    }
+    for(auto it:DFAIDset){
+        if(it==rhsIDstates){
+            return true;
+        }
+    }
+    DFAIDset.push_back(rhsIDstates);
+    return false;
+}
+
+DFAstate* DFA::solveEclosure(DFAstate *dfAstate) {
+    for(auto it:DFAstateSet){
+        if(*it==*dfAstate){
+            delete dfAstate;
+            return it;
+        }
+    }
+    return dfAstate;
+
+}
+
+void DFA::cleanUp() {
+    nfa.init();
+    regex.clear();
+    DFAstateSet.clear();
+    DFAIDset.clear();
+    NFAmove.clear();
+
 }
 
 

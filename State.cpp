@@ -59,4 +59,12 @@ void State::showDetail() {
 void State::clean() {
 }
 
+bool State::operator<(const State &lhs) const{
+    return stateID<lhs.stateID;
+}
+
+bool State::operator<(State *lhs) const {
+    return stateID<lhs->stateID;
+}
+
 

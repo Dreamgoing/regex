@@ -177,28 +177,28 @@ CMakeFiles/tes.dir/Transition.cpp.o.provides: CMakeFiles/tes.dir/Transition.cpp.
 CMakeFiles/tes.dir/Transition.cpp.o.provides.build: CMakeFiles/tes.dir/Transition.cpp.o
 
 
-CMakeFiles/tes.dir/regex.cpp.o: CMakeFiles/tes.dir/flags.make
-CMakeFiles/tes.dir/regex.cpp.o: ../regex.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/wangruoxuan/ClionProjects/regex/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/tes.dir/regex.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tes.dir/regex.cpp.o -c /Users/wangruoxuan/ClionProjects/regex/regex.cpp
+CMakeFiles/tes.dir/Regex.cpp.o: CMakeFiles/tes.dir/flags.make
+CMakeFiles/tes.dir/Regex.cpp.o: ../Regex.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/wangruoxuan/ClionProjects/regex/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/tes.dir/Regex.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tes.dir/Regex.cpp.o -c /Users/wangruoxuan/ClionProjects/regex/Regex.cpp
 
-CMakeFiles/tes.dir/regex.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tes.dir/regex.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/wangruoxuan/ClionProjects/regex/regex.cpp > CMakeFiles/tes.dir/regex.cpp.i
+CMakeFiles/tes.dir/Regex.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tes.dir/Regex.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/wangruoxuan/ClionProjects/regex/Regex.cpp > CMakeFiles/tes.dir/Regex.cpp.i
 
-CMakeFiles/tes.dir/regex.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tes.dir/regex.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/wangruoxuan/ClionProjects/regex/regex.cpp -o CMakeFiles/tes.dir/regex.cpp.s
+CMakeFiles/tes.dir/Regex.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tes.dir/Regex.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/wangruoxuan/ClionProjects/regex/Regex.cpp -o CMakeFiles/tes.dir/Regex.cpp.s
 
-CMakeFiles/tes.dir/regex.cpp.o.requires:
+CMakeFiles/tes.dir/Regex.cpp.o.requires:
 
-.PHONY : CMakeFiles/tes.dir/regex.cpp.o.requires
+.PHONY : CMakeFiles/tes.dir/Regex.cpp.o.requires
 
-CMakeFiles/tes.dir/regex.cpp.o.provides: CMakeFiles/tes.dir/regex.cpp.o.requires
-	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/regex.cpp.o.provides.build
-.PHONY : CMakeFiles/tes.dir/regex.cpp.o.provides
+CMakeFiles/tes.dir/Regex.cpp.o.provides: CMakeFiles/tes.dir/Regex.cpp.o.requires
+	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/Regex.cpp.o.provides.build
+.PHONY : CMakeFiles/tes.dir/Regex.cpp.o.provides
 
-CMakeFiles/tes.dir/regex.cpp.o.provides.build: CMakeFiles/tes.dir/regex.cpp.o
+CMakeFiles/tes.dir/Regex.cpp.o.provides.build: CMakeFiles/tes.dir/Regex.cpp.o
 
 
 # Object files for target tes
@@ -208,7 +208,7 @@ tes_OBJECTS = \
 "CMakeFiles/tes.dir/NFA.cpp.o" \
 "CMakeFiles/tes.dir/State.cpp.o" \
 "CMakeFiles/tes.dir/Transition.cpp.o" \
-"CMakeFiles/tes.dir/regex.cpp.o"
+"CMakeFiles/tes.dir/Regex.cpp.o"
 
 # External object files for target tes
 tes_EXTERNAL_OBJECTS =
@@ -218,7 +218,7 @@ tes: CMakeFiles/tes.dir/DFA.cpp.o
 tes: CMakeFiles/tes.dir/NFA.cpp.o
 tes: CMakeFiles/tes.dir/State.cpp.o
 tes: CMakeFiles/tes.dir/Transition.cpp.o
-tes: CMakeFiles/tes.dir/regex.cpp.o
+tes: CMakeFiles/tes.dir/Regex.cpp.o
 tes: CMakeFiles/tes.dir/build.make
 tes: CMakeFiles/tes.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/wangruoxuan/ClionProjects/regex/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable tes"
@@ -234,7 +234,7 @@ CMakeFiles/tes.dir/requires: CMakeFiles/tes.dir/DFA.cpp.o.requires
 CMakeFiles/tes.dir/requires: CMakeFiles/tes.dir/NFA.cpp.o.requires
 CMakeFiles/tes.dir/requires: CMakeFiles/tes.dir/State.cpp.o.requires
 CMakeFiles/tes.dir/requires: CMakeFiles/tes.dir/Transition.cpp.o.requires
-CMakeFiles/tes.dir/requires: CMakeFiles/tes.dir/regex.cpp.o.requires
+CMakeFiles/tes.dir/requires: CMakeFiles/tes.dir/Regex.cpp.o.requires
 
 .PHONY : CMakeFiles/tes.dir/requires
 

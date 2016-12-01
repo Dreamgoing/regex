@@ -12,6 +12,13 @@ CMakeFiles/tes.dir/NFA.cpp.o: ../NFA.h
 CMakeFiles/tes.dir/NFA.cpp.o: ../State.h
 CMakeFiles/tes.dir/NFA.cpp.o: ../Transition.h
 
+CMakeFiles/tes.dir/Regex.cpp.o: ../DFA.h
+CMakeFiles/tes.dir/Regex.cpp.o: ../NFA.h
+CMakeFiles/tes.dir/Regex.cpp.o: ../Regex.cpp
+CMakeFiles/tes.dir/Regex.cpp.o: ../Regex.h
+CMakeFiles/tes.dir/Regex.cpp.o: ../State.h
+CMakeFiles/tes.dir/Regex.cpp.o: ../Transition.h
+
 CMakeFiles/tes.dir/State.cpp.o: ../State.cpp
 CMakeFiles/tes.dir/State.cpp.o: ../State.h
 CMakeFiles/tes.dir/State.cpp.o: ../Transition.h
@@ -19,9 +26,6 @@ CMakeFiles/tes.dir/State.cpp.o: ../Transition.h
 CMakeFiles/tes.dir/Transition.cpp.o: ../State.h
 CMakeFiles/tes.dir/Transition.cpp.o: ../Transition.cpp
 CMakeFiles/tes.dir/Transition.cpp.o: ../Transition.h
-
-CMakeFiles/tes.dir/regex.cpp.o: ../regex.cpp
-CMakeFiles/tes.dir/regex.cpp.o: ../regex.h
 
 CMakeFiles/tes.dir/test.cpp.o: ../DFA.h
 CMakeFiles/tes.dir/test.cpp.o: ../NFA.h

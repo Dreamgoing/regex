@@ -6,9 +6,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/wangruoxuan/ClionProjects/regex/DFA.cpp" "/Users/wangruoxuan/ClionProjects/regex/cmake-build-debug/CMakeFiles/tes.dir/DFA.cpp.o"
   "/Users/wangruoxuan/ClionProjects/regex/NFA.cpp" "/Users/wangruoxuan/ClionProjects/regex/cmake-build-debug/CMakeFiles/tes.dir/NFA.cpp.o"
+  "/Users/wangruoxuan/ClionProjects/regex/Regex.cpp" "/Users/wangruoxuan/ClionProjects/regex/cmake-build-debug/CMakeFiles/tes.dir/Regex.cpp.o"
   "/Users/wangruoxuan/ClionProjects/regex/State.cpp" "/Users/wangruoxuan/ClionProjects/regex/cmake-build-debug/CMakeFiles/tes.dir/State.cpp.o"
   "/Users/wangruoxuan/ClionProjects/regex/Transition.cpp" "/Users/wangruoxuan/ClionProjects/regex/cmake-build-debug/CMakeFiles/tes.dir/Transition.cpp.o"
-  "/Users/wangruoxuan/ClionProjects/regex/regex.cpp" "/Users/wangruoxuan/ClionProjects/regex/cmake-build-debug/CMakeFiles/tes.dir/regex.cpp.o"
   "/Users/wangruoxuan/ClionProjects/regex/test.cpp" "/Users/wangruoxuan/ClionProjects/regex/cmake-build-debug/CMakeFiles/tes.dir/test.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

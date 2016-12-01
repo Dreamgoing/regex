@@ -177,6 +177,33 @@ NFA.cpp.s:
 	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/NFA.cpp.s
 .PHONY : NFA.cpp.s
 
+Regex.o: Regex.cpp.o
+
+.PHONY : Regex.o
+
+# target to build an object file
+Regex.cpp.o:
+	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/Regex.cpp.o
+.PHONY : Regex.cpp.o
+
+Regex.i: Regex.cpp.i
+
+.PHONY : Regex.i
+
+# target to preprocess a source file
+Regex.cpp.i:
+	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/Regex.cpp.i
+.PHONY : Regex.cpp.i
+
+Regex.s: Regex.cpp.s
+
+.PHONY : Regex.s
+
+# target to generate assembly for a file
+Regex.cpp.s:
+	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/Regex.cpp.s
+.PHONY : Regex.cpp.s
+
 State.o: State.cpp.o
 
 .PHONY : State.o
@@ -231,33 +258,6 @@ Transition.cpp.s:
 	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/Transition.cpp.s
 .PHONY : Transition.cpp.s
 
-regex.o: regex.cpp.o
-
-.PHONY : regex.o
-
-# target to build an object file
-regex.cpp.o:
-	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/regex.cpp.o
-.PHONY : regex.cpp.o
-
-regex.i: regex.cpp.i
-
-.PHONY : regex.i
-
-# target to preprocess a source file
-regex.cpp.i:
-	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/regex.cpp.i
-.PHONY : regex.cpp.i
-
-regex.s: regex.cpp.s
-
-.PHONY : regex.s
-
-# target to generate assembly for a file
-regex.cpp.s:
-	$(MAKE) -f CMakeFiles/tes.dir/build.make CMakeFiles/tes.dir/regex.cpp.s
-.PHONY : regex.cpp.s
-
 test.o: test.cpp.o
 
 .PHONY : test.o
@@ -300,15 +300,15 @@ help:
 	@echo "... NFA.o"
 	@echo "... NFA.i"
 	@echo "... NFA.s"
+	@echo "... Regex.o"
+	@echo "... Regex.i"
+	@echo "... Regex.s"
 	@echo "... State.o"
 	@echo "... State.i"
 	@echo "... State.s"
 	@echo "... Transition.o"
 	@echo "... Transition.i"
 	@echo "... Transition.s"
-	@echo "... regex.o"
-	@echo "... regex.i"
-	@echo "... regex.s"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"

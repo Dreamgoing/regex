@@ -56,6 +56,20 @@ State.h
 Transition.h
 /Users/wangruoxuan/ClionProjects/regex/Transition.h
 
+/Users/wangruoxuan/ClionProjects/regex/Regex.cpp
+Regex.h
+/Users/wangruoxuan/ClionProjects/regex/Regex.h
+
+/Users/wangruoxuan/ClionProjects/regex/Regex.h
+iostream
+-
+cstdio
+-
+string
+-
+DFA.h
+/Users/wangruoxuan/ClionProjects/regex/DFA.h
+
 /Users/wangruoxuan/ClionProjects/regex/State.cpp
 State.h
 /Users/wangruoxuan/ClionProjects/regex/State.h
@@ -85,12 +99,6 @@ vector
 -
 iostream
 -
-
-/Users/wangruoxuan/ClionProjects/regex/regex.cpp
-regex.h
-/Users/wangruoxuan/ClionProjects/regex/regex.h
-
-/Users/wangruoxuan/ClionProjects/regex/regex.h
 
 /Users/wangruoxuan/ClionProjects/regex/test.cpp
 iostream

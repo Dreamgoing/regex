@@ -2,6 +2,7 @@
 // Created by 王若璇 on 16/11/22.
 //
 
+
 #ifndef REGEX_STATE_H
 #define REGEX_STATE_H
 
@@ -32,6 +33,10 @@ public:
     int stateID;
     bool matched;
     bool visited;
+    bool operator< (const State& lhs)const ;
+    bool operator< (State* lhs) const;
+
+
 private:
     void show();
 
