@@ -1,9 +1,0 @@
-abc
-a|bc
-ab|cd
-ab*
-ab+
-ab?
-a(bc)*
-l(l|d)*
-(s?|a?)dd*(@dd*)?
