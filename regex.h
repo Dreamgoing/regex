@@ -12,6 +12,7 @@
 
 
 ///@todo learn to write more effective README
+///@todo implement this class use Object-Oriented Inheritance.
 using namespace std;
 
 class Regex {
@@ -27,6 +28,9 @@ public:
 
     ///init before use Regex
     bool init(const string& rule);
+    bool regexMatch(const string& str);
+    tuple<bool,string> regexSearch(const string& str);
+
 
 };
 

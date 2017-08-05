@@ -6,3 +6,4 @@ ab+
 ab?
 a(bc)*
 l(l|d)*
+(s?|a?)dd*(@dd*)?

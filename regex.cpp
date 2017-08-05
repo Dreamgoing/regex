@@ -12,5 +12,7 @@ Regex::Regex() {
 }
 
 bool Regex::init(const string &rule) {
-    return false;
+    dfa.cleanUp();
+    dfa.init(rule);
+    dfa.subsetConstruction();
 }

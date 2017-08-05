@@ -276,7 +276,6 @@ bool DFA::lesser(State *lhs, State *rhs) {
 void DFA::minizeDFA() {
     ///@todo implement this function
 
-
 }
 
 bool DFA::existDFAstate(DFAstate *rhs) {

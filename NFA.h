@@ -20,6 +20,7 @@ using namespace std;
 /**
  * @brief Non-Deterministic Finite Automation.
  *        Converting Regular Expressions to NFAs.
+ *        epsilon-edges '~'
  * */
 
 class Fragment {
